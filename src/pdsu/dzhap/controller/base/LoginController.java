@@ -19,7 +19,7 @@ public class LoginController {
 	/**
 	 * @param user
 	 * @param model
-	 * @return
+	 * @return888
 	 */
 	@RequestMapping("login.do")
 	public String Login(Users user,Model model) {
