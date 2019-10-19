@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="start" style="width: 100px;height: 100px;background-color:blue;color: #fff;
+        font-size: 40px;font-weight: bold;text-align: center;
+        line-height: 100px;position: fixed;bottom:200px;right: 50px;
+        border-radius: 50%;opacity: 0.5;">start</div>
+    
+        <!-- 结束按钮 -->
+        <div class="stop" style="width: 100px;height: 100px;background-color:blue;color: #fff;
+        font-size: 40px;font-weight: bold;text-align: center;
+        line-height: 100px;position: fixed;bottom:50px;right: 50px;
+        border-radius: 50%;opacity: 0.5;">stop</div>
+    
+        <script>
+            var start = document.getElementsByClassName('start')[0];
+            var stop = document.getElementsByClassName('stop')[0];
+            var timer = 0; //赋值是避免直接点stop
+            var key = true; //设置这个的意义在于，没有这个的话点击start多次会有多个定时器，结束不了
+            start.onclick = function () {
+                alert(1);
+                // if (key) {
+                //     timer = setInterval(function () {
+                //         window.scrollBy(0, 100); //如果想实现加速，可以改这里面的值，设置一个变量为num
+                //     }, 100); //这个值不能改
+                //     key = false;
+                // }
+            }
+            stop.onclick = function () {
+                // clearInterval(timer);
+                // key = true;
+                alert(1);
+            }
+        </script>
+</body>
+</html>

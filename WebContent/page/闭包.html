@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+      <script>
+        //闭包
+        //   function demo() {
+        //       var list = [];
+        //       for(var i = 0;i<10;i++){
+        //           list[i] = function(){    //这里只是将函数赋值给list[i],并没有执行函数
+        //               console.log(i);  
+        //           }
+        //       }
+        //       return list;
+        //   }
+        //   var ele = demo();
+        //   for(var i = 0 ;i<10;i++){
+        //       ele[i]();        //这里执行上面赋值的函数,会输出i,因为这时demo函数已经执行过了,此时i的值等于10,所以会输出10个10,
+        //   }
+        //闭包唯一解决方案
+          function demo(){
+              var list = [];
+              for(var i = 0;i<10;i++){
+                  (function(j){
+                      list[j] = function() {
+                      console.log(j);
+                  }
+                }(i))
+              }
+              return list;
+          }
+          var arr = demo();
+          for(var i = 0;i<10;i++){
+              arr[i]();
+          }
+      </script>
+</body>
+</html>

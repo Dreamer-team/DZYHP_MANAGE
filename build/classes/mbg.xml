@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<!-- 
+		targetRuntime="MyBatis3Simple":生成简单版的CRUD
+		MyBatis3:豪华版
+	
+	 -->
+  <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+  	<!-- jdbcConnection：指定如何连接到目标数据库 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/dzyhp-manage?allowMultiQueries=true"
+        userId="root"
+        password="123">
+    </jdbcConnection>
+
+	<!--  -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+	<!-- javaModelGenerator：
+	        指定javaBean的生成的路径
+	    targetProject：当前项目下哪个文件夹下
+	    targetPackage:把实体类放到那一个包中
+	-->
+    <javaModelGenerator targetPackage="pdsu.dzyhap.bean" 
+    		targetProject=".\src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+	<!-- sqlMapGenerator：sql配置文件存放的位置
+	       targetProject：当前项目下哪个文件夹下
+	    targetPackage:把mapper.xml放到那一个包中
+	： -->
+    <sqlMapGenerator targetPackage="pdsu.dzyhap.mapper"  
+    	targetProject=".\src">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- javaClientGenerator:指定mapper接口所在的位置 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pdsu.dzyhap.dao"  
+    	targetProject=".\src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+	<!-- 指定要逆向分析哪些表：根据表要创建javaBean -->
+    <table tableName="base" domainObjectName="Base"></table>
+    <table tableName="dept" domainObjectName="Dept"></table>
+    <table tableName="roles" domainObjectName="Roles"></table>
+    <table tableName="found_type" domainObjectName="Found_type"></table>
+    <table tableName="users" domainObjectName="Users"></table>
+    <table tableName="plan_info" domainObjectName="Plan_info"></table>
+    <table tableName="plan_mat" domainObjectName="Plan_mat"></table>
+    <table tableName="bat_info" domainObjectName="Bat_info"></table>
+    <table tableName="bat_mat" domainObjectName="Bat_mat"></table>
+    <table tableName="mat_cate" domainObjectName="Mat_cate"></table>
+    <table tableName="danger_degree" domainObjectName="Danger_degree"></table>
+    <table tableName="bat_mat_history" domainObjectName="Bat_mat_history"></table>
+ 
+  </context>
+</generatorConfiguration>

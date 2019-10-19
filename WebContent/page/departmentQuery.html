@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+ 
+<link  href="Css/layout.css" rel="stylesheet" type="text/css" />
+<link href="Css/cb.css" rel="stylesheet" type="text/css"   />
+<link  href="Css/n.css" rel="stylesheet" type="text/css" />
+<style>
+.biankuangs{ border:solid #A6D2FF 1px; border-top:0px;   }
+#xueke,#item_text2,#item_text1,#itemtypes2,#item_text3{ /**/display:none;}
+</style>  
+
+</head>
+
+<body>
+<table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:4px;">
+      <tr>
+        <td width="17" background="Images/bj4.gif"><img src="Picture/r.gif" width="16" height="16" /></td>
+        <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！  当前操作菜单：部门表      
+        </td>
+        <td width="162" align="center" background="Images/bj4.gif"></td>    
+      </tr>
+    </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b1.jpg" width="10" height="26"/></td>
+            <td width="68%" background="Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="20" align="left"><img src="Picture/tz.gif" width="10" height="16"/></td>
+                    <td width="104" align="left" class="biao">部门表--查询</td> 
+                    <tr>
+      </table>
+  </tr>
+</table>
+
+
+
+  <table width="100%" border="1" align="center" id="tb" cellpadding="3" cellspacing="1" bgcolor="#AEDEF4" style="border:1px solid #AEDEF4">
+    <tr>
+      <th width="20" height="25" align="center" bgcolor="#EFFBFE">选择</th>
+      <th align="center" bgcolor="#EFFBFE">单位编号</th>
+      <th align="center" bgcolor="#EFFBFE">单位名称</th>
+      <th align="center" bgcolor="#EFFBFE">划拨日期</th>
+      <th align="center" bgcolor="#EFFBFE">上期结余</th>
+      <th align="center" bgcolor="#EFFBFE">划拨金额</th>
+      <th align="center" bgcolor="#EFFBFE">本期结余</th>
+    </tr>
+    <tr>
+    <td style="text-align:center;"><input type="checkbox"></td>
+        <td>290000</td>
+        <td>化学与环境工程学院</td>
+        <td>2019-05-10</td>
+        <td>0.00</td>
+        <td>10000.00</td>
+        <td>20763.00</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><input type="checkbox"></td>
+         <td>290000</td>
+        <td>化学与环境工程学院</td>
+        <td>2019-05-10</td>
+        <td>0.00</td>
+        <td>10000.00</td>
+        <td>20763.00</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><input type="checkbox"></td>
+        <td>290000</td>
+        <td>化学与环境工程学院</td>
+        <td>2019-05-10</td>
+        <td>0.00</td>
+        <td>10000.00</td>
+        <td>20763.00</td>
+    </tr>
+   <tr>
+    <td style="text-align:center;"><input type="checkbox"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>     
+    <tr>
+    <td style="text-align:center;"><input type="checkbox"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+    <td style="text-align:center;"><input type="checkbox"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+    <td style="text-align:center;"><input type="checkbox"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+<!-- 上图标 -->
+
+<ul id="menu">
+    <li>
+         <input type="" name="in">
+        <a href="#">
+            <button id="name">按名称查询</button>
+        </a>
+    </li>
+
+    <li>     
+      <select name="zhuangtai" id="zhuangtai"  >
+          <option value="">请选择...</option>
+          <option value="1">开启</option>
+          <option value="2">关闭</option>
+     </select>
+        <a href="#">
+            <button id="condition">按状态查询</button>
+        </a>
+    </li>       
+</ul>
+
+<style type="text/css">
+    #menu{
+        float:right;
+    } 
+</style>
+
+<!-- <style type="text/css">
+#menu li a {
+display:block; /* 将链接设为块级元素 */
+padding:8px 20px; /* 设置内边距 */
+color:#000; /* 设置文字颜色 */
+text-decoration:none; /* 去掉下划线 */
+}
+</style> -->
+
+<!-- 下一页页脚 -->
+</table>
+<div class="pagination-bar">
+    <a href="moneySty.html">首页</a>
+    <a href="#" onClick="javascript:history.back(-1);" class="page-prev disabled">&lt;</a>
+    <a href="moneySty.html">上一页</a>
+    <a href="moneySty.html">1</a>
+    <a href="moneySty.html">下一页</a>
+    <a href="moneySty.html" class="page-next disabled">&gt;</a>
+    <a href="moneySty.html">尾页</a>
+    <span>第1/1页</span>
+</div>
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+
+            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b2.jpg" width="10" height="26"/></td>
+            <td width="68%" background="Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
+              </td> 
+                    <tr>
+      </table>
+ 
+</div>
+      
+
+</body>
+</html>
