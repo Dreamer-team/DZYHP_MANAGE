@@ -14,6 +14,17 @@
      </association>
   </resultMap>
   
+  
+  <resultMap type="pdsu.dzyhap.bean.Users" id="queryMap">
+       <id column="user_id" property="userId" jdbcType="VARCHAR" />
+       <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="title" property="title" jdbcType="VARCHAR" />
+      <result column="stat" property="stat" jdbcType="CHAR" />
+      <association property="dept"  javaType="pdsu.dzyhap.bean.Dept" >
+         <result column="dept_name" property="deptName"/>
+      </association>
+  </resultMap>
+  
   <sql id="base_sql"> user_id, pwd, name, title, dept_id, stat</sql>
   <delete id="deleteByPrimaryKey"  >
    
@@ -30,6 +41,7 @@
   <update id="updateByPrimaryKey" >
    
     update users
+        
         <set>
             <if test="stat!=null &amp;&amp; stat !=''">  stat = #{stat,jdbcType=CHAR}</if>
         </set>
@@ -51,5 +63,20 @@
     from users
     where pwd = #{pwd} and name=#{name}
   </select>
+  
+  <select id="query" resultMap="queryMap" >
+       select  u.user_id as user_id,u.name as name, u.title as title,u.stat as stat,d.dept_name as dept_name
+      from dept d join  users u on d.dept_id=u.dept_id  
+      <where>
+           <if test="stat!=null &amp;&amp; stat!='' ">
+                  u.stat=#{stat}
+           </if>
+            <if test="deptName!=null &amp;&amp; deptName!='' ">
+                  d.dept_name=#{deptName}
+           </if>
+      </where>
+  </select>
+  
+  
   
 </mapper>

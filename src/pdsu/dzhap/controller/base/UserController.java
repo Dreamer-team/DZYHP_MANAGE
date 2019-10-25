@@ -1,5 +1,6 @@
 package pdsu.dzhap.controller.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import pdsu.dzhap.service.base.DeptService;
 import pdsu.dzhap.service.base.RoleService;
 import pdsu.dzhap.service.base.UserService;
-import pdsu.dzhap.utils.UserContext;
 import pdsu.dzyhap.bean.Dept;
 import pdsu.dzyhap.bean.Roles;
 import pdsu.dzyhap.bean.Users;
+import pdsu.dzyhap.dto.UserDto;
 
 /**
  * 用户操作页面
@@ -36,10 +37,12 @@ public class UserController {
 	private RoleService roleService;
 	
 	@RequestMapping("userRoleAdd.do")
-	public ModelAndView userRoleAdd(ModelAndView mav) {
+	public ModelAndView userRoleAdd(ModelAndView mav,Users user) {
 		
 		List<Roles> list = roleService.findAll() ;
-		mav.setViewName("userRoleAdd");
+		String userId = user.getUserId();
+		 mav.addObject("userId", userId);
+		 mav.setViewName("userRoleAdd");
 	     mav.addObject("list", list);
 		return mav;
 	}
@@ -65,7 +68,7 @@ public class UserController {
 	public ModelAndView userSelect(String id,ModelAndView mav) {
 		Users user = userService.findById(id);
 		
-//	    System.out.println(id);
+	    System.out.println(id);
 		mav.setViewName("userModify");
 	    mav.addObject("user", user);
 		return mav;
@@ -104,6 +107,11 @@ public class UserController {
 		
 	}
 	
+	
+	
+		
+	
+	
 	/**
 	 * 添加用户
 	 * @param user
@@ -120,13 +128,39 @@ public class UserController {
 	
 	
 	
+     @RequestMapping("selectUserOne.do")
+     @ResponseBody
+	  public List<UserDto> userSeekselectUserByDept(String deptName,String stat)
+		{	
+    	  List<Users> list1=userService.query(deptName,stat);
+    	  System.out.println(list1.size());
+    	  UserDto d=null;
+    	  List<UserDto> list=new ArrayList<UserDto> ();
+          for(Users u:list1) {
+        	   d=new UserDto();
+        	   d.setUserId(u.getUserId());
+        	   d.setName(u.getName());
+        	   d.setTitle(u.getTitle());	    
+        	   d.setStatStr(u.getStatStr());
+        	  d.setDeptName(u.getDept().getDeptName());
+        	 System.out.println("....."+d+".....");
+        	 System.out.println(u+".....");
+        	 list.add(d);
+          }
+          System.out.println(list.size()+".....");
+    	  
+          
+          return  list;
+		}
+     
+     
+     
      @RequestMapping("userSeek.do")
 	  public String userSeek()
 		{	
-    	  Users users = UserContext.getCurrent();
-    	  System.out.println(users.getName());
 		  return "userSeek";
 		}
+    
 		
 		
 

@@ -1,6 +1,9 @@
 package pdsu.dzyhap.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import pdsu.dzyhap.bean.Users;
 
 public interface UsersMapper {
@@ -50,4 +53,8 @@ public interface UsersMapper {
      * @return
      */
 	Users login(Users user);
+
+	List<Users> query(@Param("deptName")String deptName,@Param("stat")String stat);
+
+	
 }

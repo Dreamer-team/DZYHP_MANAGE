@@ -44,15 +44,15 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
 	@Override
 	public List<Users> findAll(Integer pageNum,Integer pageSize ) {
 		List<Users> selectAll=null; 
 		try {
 			PageHelper.startPage(pageNum, pageSize);
-			
 			selectAll= usersMapper.selectAll();
-		    PageInfo<Users> list=new PageInfo<Users>(selectAll);
-			
+//		    PageInfo<Users> list=new PageInfo<Users>(selectAll);
+		   
 			for (Users users : selectAll) {
 				if(users.getStat().equals(SystemConstant.USER_STATE1)) {
 					users.setStatStr(SystemConstant.USER_STATE_CLOSE);
@@ -69,11 +69,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Users findById(String userId) {
 		Users user = usersMapper.selectByPrimaryKey(userId);
-//		Dept dept = deptService.findById(user.getDept().getDeptId());
-//		if(dept!=null) {
-//			user.setDept(dept);
-//		}
-//		System.out.println("这个用户的id为"+user.getDept().getDeptId());
 		System.out.println("当前操作的用户是： "+user);
 		if(user.getStat()==SystemConstant.USER_STATE2) {
 			user.setStatStr(SystemConstant.USER_STATE_OPEN);
@@ -85,6 +80,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean updateUser(Users user) {
+		
 		 System.out.println(user);
 		 int i = usersMapper.updateByPrimaryKey(user);
 		 System.out.println("........."+i);
@@ -107,4 +103,21 @@ public class UserServiceImpl implements UserService {
 	  return true;
 	}
 
+
+	@Override
+	public List<Users> query(String deptName,String  stat) {
+		List<Users> list = usersMapper.query(deptName,stat);
+		for (Users users : list) {
+			if(users.getStat()==SystemConstant.USER_STATE2) {
+				users.setStatStr(SystemConstant.USER_STATE_OPEN);
+			}else {
+				
+				users.setStatStr(SystemConstant.USER_STATE_CLOSE);
+			}
+		}
+		return list;
+	}
+
+
+	
 }

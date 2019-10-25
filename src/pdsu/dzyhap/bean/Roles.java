@@ -4,7 +4,7 @@ public class Roles {
   
     private Integer roleId;
 
-    
+   
     private String roleName;
 
    
@@ -15,6 +15,7 @@ public class Roles {
 
    
     public Integer getRoleId() {
+    	
         return roleId;
     }
 
@@ -101,4 +102,12 @@ public class Roles {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Roles [roleId=" + roleId + ", roleName=" + roleName + ", stat=" + stat + ", remark=" + remark + "]";
+	}
+    
+    
+    
 }

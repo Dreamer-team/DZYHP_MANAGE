@@ -1,4 +1,7 @@
-<!DOCTYPE html
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -6,9 +9,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>无标题文档</title>
 
-  <link href="Css/layout.css" rel="stylesheet" type="text/css" />
-  <link href="Css/cb.css" rel="stylesheet" type="text/css" />
-  <link href="Css/n.css" rel="stylesheet" type="text/css" />
+  <link href="${ctx}/page/Css/layout.css" rel="stylesheet" type="text/css" />
+  <link href="${ctx}/page/Css/cb.css" rel="stylesheet" type="text/css" />
+  <link href="${ctx}/page/Css/n.css" rel="stylesheet" type="text/css" />
   <style>
     .biankuangs {
       border: solid #A6D2FF 1px;
@@ -59,31 +62,13 @@
         document.getElementById("item_text3").style.display = "none";
       }
     }
-    
-    
-    
-    function doDelete(sid) {
-    	/*如果这里弹出的对话框,用户点击是确定,就马上去请求Servlet
-    	如何知道用户点击的是确定
-    	如何在js的方法中请求Servlet
-    	*/
-        var flag=confirm("是否确定删除?");
-      if(flag)
-    	 {
-      //表明点了确定,访问servlet,在当前标签页打开超链接
-    	//window.location.href="DeleteServlet?sid="+sid;	 	
-    	  location.href="roleDelete.do?roleId="+sid;	
-    	 }
-    }
-
-    
   </script>
 </head>
 
 <body>
   <table width="99%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:4px;">
     <tr>
-      <td width="17" background="Images/bj4.gif"><img src="Picture/r.gif" width="16" height="16" /></td>
+      <td width="17" background="Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
       <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：角色管理界面
       </td>
       <td width="162" align="center" background="Images/bj4.gif"></td>
@@ -91,11 +76,11 @@
   </table>
   <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-      <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b1.jpg" width="10" height="26" /></td>
-      <td width="68%" background="Images/b2.jpg">
+      <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b1.jpg" width="10" height="26" /></td>
+      <td width="68%" background="${ctx}/page/Images/b2.jpg">
         <table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="20" align="left"><img src="Picture/tz.gif" width="10" height="16" /></td>
+            <td width="20" align="left"><img src="${ctx}/page/Picture/tz.gif" width="10" height="16" /></td>
             <td width="104" align="left" class="biao">列表</td>
           <tr>
         </table>
@@ -112,33 +97,27 @@
       <th align="center" bgcolor="#EFFBFE">角色名称</th>
       <th align="center" bgcolor="#EFFBFE">备注</th>
       <th align="center" bgcolor="#EFFBFE">操作</th>
+      <th align="center" bgcolor="#EFFBFE">状态</th>
     </tr>
 
-    <tr>
-      <td style="text-align:center;"><input type="checkbox" name = "choice" id = "first"></td>
-      <td>2222</td>
-      <td>ROLE</td>
-      <td>VIP</td>
-      <td align="center"><a href="" name = "delete">删除</a></td>
+       <c:forEach items="${list }" var="role">
+       <tr>
+         <td style="text-align:center;"><input type="checkbox" name = "choice" id = "first"></td>
+             <td>${role.roleId }</td>
+             <td>${role.roleName }</td>
+             <td>${role.remark }</td>
+             <td>${role.stat }</td>
+            <td align="center">
+                  <a href="" onclick="doDelete(${role.roleId})">删除</a>
+            </td>
     </tr>
-    <tr>
-      <td style="text-align:center;"><input type="checkbox" name = "choice" id = "second"></td>
-      <td>1111</td>
-      <td>ADMIN</td>
-      <td>VIP</td>
-      <td align="center"><a href="" name = "delete">删除</a></td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><input type="checkbox" name = "choice" id = "third"></td>
-      <td>adedefsdc</td>
-      <td>test</td>
-      <td>测试账户</td>
-      <td align="center"><a href="" name = "delete">删除</a></td>
-    </tr>
+          
+       </c:forEach>
+
     <div>
       <ul id="menu">
         <li>
-          <a href="partInformation.html">
+          <a href="partInformation.do">
             <button>新建</button>
           </a>
         </li>
@@ -237,17 +216,6 @@
       </td>
     </tr>
   </table>
-<script>
-    var list = document.getElementsByName("choice");
-    var del = document.getElementsByName("delete");
-    for(var i = 0;i<del.length;i++){
-      (function(j){
-          del[j].onclick = function(){
-            window.location.href = "#";   //list[j].id
-          }
-      }(i))
-    }
-</script>
 </body>
 
 </html>

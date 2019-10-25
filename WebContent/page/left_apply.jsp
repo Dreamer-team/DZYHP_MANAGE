@@ -256,7 +256,7 @@ a{text-decoration:none}
                 	<!-- 部门管理 用户管理 角色管理 权限管理 仓库管理 基础分类管理 -->
                     <li><a href="touser.do" target="main">用户管理</a></li>
                     <li><a href="department.html">部门管理</a></li>
-                    <li><a href="partManage.html">角色管理</a></li>
+                    <li><a href="partManage.do">角色管理</a></li>
                     <li><a href="classify.html">基础分类管理</a></li>
                     <!-- <li><a href="apply1.html">项目介绍</a></li>  -->
                     <li><a href="setwarehourse.html">仓库管理</a></li>

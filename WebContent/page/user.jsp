@@ -10,6 +10,12 @@
 <link  href="${ctx}/page/Css/layout.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/page/Css/cb.css" rel="stylesheet" type="text/css"   />
 <link  href="${ctx}/page/Css/n.css" rel="stylesheet" type="text/css" />
+<link  href="${ctx}/page/Css/index.css"  rel="stylesheet" type="text/css">
+ 
+  <script src="${ctx}/page/Css/jquery-3.3.1.min.js"></script>
+ <script src="${ctx}/page/Css/xlPaging.js"></script>
+  
+   
 <style>
 .biankuangs{ border:solid #A6D2FF 1px; border-top:0px;   }
 #xueke,#item_text2,#item_text1,#itemtypes2,#item_text3{ /**/display:none;}
@@ -65,6 +71,25 @@ function doDelete(sid) {
 	 }
 }
 
+
+function doRole(sid) {	 	
+	  location.href="userRoleAdd.do?userId="+sid;	
+
+}
+
+
+function doNextpage(sid) {	 	
+	  location.href="touser.do?pageNum="+sid;	
+}
+
+function doEndpage(sid) {	 	
+	  location.href="touser.do?pageNum="+sid;	
+}
+
+function doPrepage(sid) {	 	
+	  location.href="touser.do?pageNum="+sid;	
+}
+
 </script>
 </head>
 
@@ -101,7 +126,7 @@ function doDelete(sid) {
       <th align="center" bgcolor="#EFFBFE">操作</th>
     </tr>
       
-      <c:forEach items="${list.list}" var="users">
+<c:forEach items="${list.list}" var="users">
         <tr>
           <td style="text-align:center;"><input type="checkbox" name="choice" id="${users.userId}"></td>
              <td>${users.userId}</td>
@@ -109,7 +134,7 @@ function doDelete(sid) {
             <td> ${users.dept.deptName}</td>
             <td>${users.title}</td>
             <td>${users.statStr}</td>
-            <td> <a href="${ctx}/userRoleAdd.do">添加角色</a>
+            <td> <a href="#"  onclick="doRole(${users.userId})">添加角色</a>
         	<a href="#" onclick="doDelete(${users.userId})">删除</a>
           </td>    
     </tr>
@@ -165,56 +190,76 @@ text-decoration:none; /* 去掉下划线 */
 
 </table>
 
-   
   <table width="50%" border="1" align="left" id="tb" cellpadding="0" cellspacing="0"style="border:1px solid #AEDEF4">
-    <td>总共${list.pages }页，共${list.total}条数据。</td>
-      
-
-        <td><a href="user.html">首页</a>
-          <td ><a href="#" onClick="javascript:history.back(-1);" class="page-prev disabled">&lt;</a>
-     <a href="user5.html">尾页</a>
-     <span>第1页</span></<span>
-     <span>共5页</span></<a></td>
-      
+    <td>总共${list.pages }页</td>
+    <td>共${list.total}条数据</td>
+    <td>每页显示${list.pageSize }条数据</td>
+		<c:if test="${list.isFirstPage==false && list.isLastPage==false}">
+		    <td><a href="touser.do">首页</a></td>	
+		      <td><a href="#" onclick="doNextpage(${ list.prePage})">上一页</a> </td>`
+		      <td><a href="#" onclick="doNextpage(${list.nextPage})">下一页</a> </td>
+		     <td><a href="#" onclick="doEndpage(${list.lastPage})">尾页</a></td>
+             <td>    <span>当前第${ list.pageNum}页</span></td> 
+		</c:if> 
+		   
+		   <c:if test="${list.isFirstPage }">
+		     <td><a href="touser.do">首页</a></td>	`
+		      <td><a href="#" onclick="doNextpage(${list.nextPage})">下一页</a> </td>
+		   <td>   <a href="#" onclick="doEndpage(${list.lastPage})">尾页</a> </td> 
+            <td>  <span>当前第${ list.pageNum}页</span></td> 
+		   </c:if> 
+		   
+		<c:if test="${list.isLastPage}">
+		     <td><a href="touser.do">首页</a></td>
+		     <td> <a href="#" onclick="doEndpage(${list.lastPage})">尾页</a></td> 
+            <td>  <span>当前第${ list.pageNum}页</span> </td> 
+		</c:if>    
     </table>
-
-
-
+  
+  
+  
+  
+  
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-
-            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b2.jpg" width="10" height="26"/></td>
-            <td width="68%" background="${ctx}/page/Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
-              </td> 
-                    <tr>
+            <td width="68%" background="${ctx}/page/Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0"></td> 
+        <tr>
 </table>
-
- 
+  
 </div>
-<script>
-    var a = document.getElementById("alter");
-    var value;
-    a.onclick = function() {
-    var i = 0;
-    for(k in ele){
-    if(ele[k].checked){
-        value = k;
-        i++;
+
+     <script>
+        var ele = document.getElementsByName("choice");
+        var list = document.getElementsByClassName("deleteone");
+        for (var i = 0; i < list.length; i++) {
+            (function (i) {
+                list[i].onclick = function () {
+                    alert(ele[i].id);
+                    window.location.href = "#"; //传值  ele[i].id   
+                }
+            })(i);
         }
-    }
-    if(i>1){
-        alert("不能修改多个");
-        return;
-        }else if(i===1){
-           
-            window.location.href = "userSelect.do?id="+ele[value].id;//servlet 传值  ele[value].id
-            //window.location.href = "userModify.html";
-            alert(ele[value].id);   
-        }else{
-            alert("请至少选择一个");
-            return;
+        var a = document.getElementById("alter");
+        var value;
+        a.onclick = function () {
+            var i = 0;
+            for (k in ele) {
+                if (ele[k].checked) {
+                    value = k;
+                    i++;
+                }
+            }
+            if (i > 1) {
+                alert("不能修改多个");
+                return;
+            } else if (i === 1) {
+                
+                window.location.href = "userSelect.do?id="+ele[value].id;
+            } else {
+                alert("请至少选择一个");
+                return;
+            }
         }
-    }
     </script>
 </body>
 </html>

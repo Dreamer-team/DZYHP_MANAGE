@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -67,7 +70,7 @@
         <tr>
 
             <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
-            <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：角色管理界面
+            <td width="466" background="${ctx}/page/Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：角色管理界面
             </td>
             <td width="162" align="center" background="${ctx}/page/Images/bj4.gif"></td>
         </tr>
@@ -86,24 +89,39 @@
         </tr>
     </table>
 
-<form action="ser">
+<form action="roleAdd.do">
     <table width="100%" border="1" align="center" id="tb" cellpadding="2" cellspacing="1" bgcolor="#AEDEF4"
         style="border:1px solid #AEDEF4">
         <tr>
             <td align="right" height="30">角色名称:</td>
-            <td align="left" height="30"><input placeholder="角色名称" name = "name" style="height:20px;width:200px;" /></input></td>
+            <td align="left" height="30"><input placeholder="角色名称" type="text"name = "roleName" style="height:20px;width:200px;" /></input></td>
+        </tr>
+        <tr>
             <td align="right" height="30">角色描述:</td>
-            <td align="left" height="30"><input placeholder="角色描述" name = "text" style="height:20px;width:200px;" /></input></td>
+            <td align="left" height="30"><input placeholder="角色描述" type="text" name = "remark" style="height:20px;width:200px;" /></input></td>
+        </tr>
+         <tr>
+             <td align="right" height="30">角色状态:</td>
+             <td>
+               <select name="stat" id="stat"  >
+                 <option value="">请选择...</option>
+                 <option value="1">开启</option>
+                 <option value="0">关闭</option>
+               </select> 
+            </td>
+        </tr>
+        <tr>
+             <td>
+                 <input type="submit" value="保存" style="width:40px; height:40px">
+            </td>
+         
+             <td>
+                <input type="button" value="返回" onclick="javascript:history.go(-1);" style="width:40px; height:40px">
+            </td>
         </tr>
     </table>
 
-    <div align="center" class="btn">
-        <table width="50%" border="1" align="left" id="tb" cellpadding="0" cellspacing="0"
-            style="border:1px solid #ffffff">
-            <input type="submit" value="保存" style="width:40px; height:40px">
-            <input type="button" value="返回" onclick="javascript:history.go(-1);" style="width:40px; height:40px">
-        </table>
-    </div>
+   
 </form>
 
 
@@ -112,10 +130,6 @@
            margin-top:20px;
         }
     </style>
-
-
-
-
 </body>
 
 </html>
