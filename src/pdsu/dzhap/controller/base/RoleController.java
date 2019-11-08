@@ -22,9 +22,15 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 	
+	   /**
+	    * 展示所有角色
+	    * @param mav
+	    * @return
+	    */
 	   @RequestMapping("partManage.do")
-		public ModelAndView partManage(ModelAndView mav) {
-	     List<Roles> list = roleService.findAll() ;
+		public ModelAndView partManage(ModelAndView mav,String roleName) {
+		   System.out.println(roleName);
+	     List<Roles> list = roleService.findAll(roleName) ;
 		 mav.setViewName("partManage");
 		 mav.addObject("list", list);
 			return mav;
@@ -61,6 +67,12 @@ public class RoleController {
 	  
 	  
 	   
+	  /**
+	   * 删除角色
+	   * @param role
+	   * @param model
+	   * @return
+	   */
 	  @RequestMapping("roleDelete.do")
 		public String userDelete(Roles role,Model model)
 		{
@@ -71,7 +83,6 @@ public class RoleController {
 				model.addAttribute("msg", "删除失败");
 				return "error";
 			}
-			
 		}
 	   
 	   

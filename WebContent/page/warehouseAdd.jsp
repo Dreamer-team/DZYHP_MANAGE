@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,9 +9,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
 
-    <link href="Css/layout.css" rel="stylesheet" type="text/css" />
-    <link href="Css/cb.css" rel="stylesheet" type="text/css" />
-    <link href="Css/n.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/cb.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/n.css" rel="stylesheet" type="text/css" />
     <style>
         .biankuangs {
             border: solid #A6D2FF 1px;
@@ -69,20 +72,20 @@
     <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0"
         style="margin-bottom:4px;">
         <tr>
-            <td width="17" background="Images/bj4.gif"><img src="Picture/r.gif" width="16" height="16" /></td>
+            <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
             <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：增加
             </td>
-            <td width="162" align="center" background="Images/bj4.gif"></td>
+            <td width="162" align="center" background="${ctx}/page/Images/bj4.gif"></td>
         </tr>
     </table>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b1.jpg" width="10" height="26" />
+            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b1.jpg" width="10" height="26" />
             </td>
-            <td width="68%" background="Images/b2.jpg">
+            <td width="68%" background="${ctx}/page/Images/b2.jpg">
                 <table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="20" align="left"><img src="Picture/tz.gif" width="10" height="16" /></td>
+                        <td width="20" align="left"><img src="${ctx}/page/Picture/tz.gif" width="10" height="16" /></td>
                         <td width="104" align="left" class="biao">增加</td>
                     <tr>
                 </table>
@@ -94,7 +97,7 @@
 
 
 
-<form action="ser">
+<form action="baseAdd.do" method="post">
     <table width="80%" border="1" align="center" id="tb" cellpadding="0" cellspacing="0" bgcolor="#AEDEF4"
         style="border:1px solid #ffffff">
 
@@ -104,33 +107,71 @@
 
         <tr>
             <th align="center" bgcolor="#EFFBFE">仓库名称</th>
-            <td><input type="text" name="name" size="40"></td>
+            <td><input type="text" name="baseName" size="40"></td>
             <th align="center" bgcolor="#EFFBFE">仓库类别</th>
-            <td><input type="text" name="warehousecategory" size="40"></td>
+            <td><input type="text" name="baseType" size="40"></td>
             <th align="center" bgcolor="#EFFBFE">经费类别</th>
-            <td><input type="text" name="Fundingcategory" size="40"></td>
+            <td>
+              
+              <select name="found_type.foundTypeId" id="foundTypeId">
+                <option value="">请选择...</option>
+                 <c:forEach items="${listFoundType }" var="Type">
+                 <option value="${ Type.foundTypeId }">${Type.foundType }</option>    
+                 </c:forEach>
+                
+             </select>
+            
+           </td>
             <th align="center" bgcolor="#EFFBFE">部门编号</th>
-            <td><input type="text" name="number" size="40"></td>
+            <td><input type="text" name="deptId" size="40"></td>
         </tr>
         <tr>
             <th align="center" bgcolor="#EFFBFE">仓库负责人</th>
-            <td><input type="text" name="header" size="40"></td>
+            
+           <td>
+            <select name="users.userId" id="userId">
+                <option value="">请选择...</option>
+                 <c:forEach items="${ userList }" var="user">
+                 <option value="${user.userId }">${user.name }</option>    
+                 </c:forEach>
+             </select> 
+            
+           </td>
             <th align="center" bgcolor="#EFFBFE">经费来源</th>
-            <td><input type="text" name="source" size="40"></td>
+            <td><input type="text" name="foundSrc" size="40"></td>
             <th align="center" bgcolor="#EFFBFE">经费预算</th>
-            <td><input type="text" name="budget" size="40"></td>
+            <td><input type="text" name="foundBudget" size="40"></td>
             <th align="center" bgcolor="#EFFBFE">经费项目</th>
-            <td><input type="text" name="project" size="40"></td>
+            <td><input type="text" name="foundProj" size="40"></td>
         </tr>
         <tr>
             <th align="center" bgcolor="#EFFBFE">经费主管部门</th>
-            <td><input type="text" name="department" size="40"></td>
+            <td> <select name="dept.deptId" id="deptId">
+                <option value="">请选择...</option>
+                 <c:forEach items="${list }" var="dept">
+                 <option value="${dept.deptId }">${dept.deptName }</option>    
+                 </c:forEach>
+                
+             </select> </td>
             <th align="center" bgcolor="#EFFBFE">经费状态</th>
-            <td><input type="text" name="fundsstate" size="40"></td>
+            <td>
+            <select name="foundStat" id="foundStat">
+                <option value="">请选择...</option>
+                 
+                 <option value="0">关闭</option>  
+                 <option value="1">开启</option>      
+             </select> 
+            </td>
             <th align="center" bgcolor="#EFFBFE">仓库状态</th>
-            <td><input type="text" name="warehousestate" size="40"></td>
+               <td><select name="baseStat" id="baseStat">
+                <option value="">请选择...</option>
+                 
+                 <option value="0">关闭</option>  
+                 <option value="1">开启</option>      
+                </select> 
+             </td>
             <th align="center" bgcolor="#EFFBFE">备注</th>
-            <td><input type="text" name="text" size="40"></td>
+            <td><input type="text" name="remark" size="40"></td>
         </tr>
     </table>
     <div class="btn">

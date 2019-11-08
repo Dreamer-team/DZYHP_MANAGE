@@ -17,6 +17,7 @@ public class LoginController {
 	
 	
 	/**
+	 * 登录
 	 * @param user
 	 * @param model
 	 * @return888
@@ -29,7 +30,7 @@ public class LoginController {
 		}else {
 			Boolean login_flag = this.indexService.login(user);
 			if(login_flag) {
-				UserContext.putCurrent(user);
+				UserContext.putCurrent(user);//把user存到session里边
 				model.addAttribute("msg", "登录成功");
 				return "index";
 			}else {

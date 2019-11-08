@@ -74,6 +74,10 @@
             <if test="deptName!=null &amp;&amp; deptName!='' ">
                   d.dept_name=#{deptName}
            </if>
+            <if test="userId!=null &amp;&amp; userId!='' ">
+                 u.user_id  like concat("%",#{userId},"%")
+           </if>
+           
       </where>
   </select>
   

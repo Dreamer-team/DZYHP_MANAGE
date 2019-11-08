@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,9 +9,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
 
-    <link href="Css/layout.css" rel="stylesheet" type="text/css" />
-    <link href="Css/cb.css" rel="stylesheet" type="text/css" />
-    <link href="Css/n.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/cb.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/page/Css/n.css" rel="stylesheet" type="text/css" />
     <style>
         .biankuangs {
             border: solid #A6D2FF 1px;
@@ -41,6 +44,10 @@
 
         }
 
+        
+     
+
+        
         function change_itemtypes2(name) {
             document.getElementById("types2").value = "";
             document.getElementById("types3").value = "";
@@ -59,6 +66,18 @@
                 document.getElementById("item_text3").style.display = "none";
             }
         }
+        
+        
+        
+        function doNextpage(sid) {	 	
+      	  location.href="setwarehourse.do?pageNum="+sid;	
+      }
+
+   
+        
+        
+        
+        
     </script>
 </head>
 
@@ -66,17 +85,17 @@
     <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0"
         style="margin-bottom:4px;">
         <tr>
-            <td width="17" background="Images/bj4.gif"><img src="Picture/r.gif" width="16" height="16" /></td>
-            <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：仓库设置
+            <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
+            <td width="466" background="${ctx}/page/Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：仓库设置
             </td>
-            <td width="162" align="center" background="Images/bj4.gif"></td>
+            <td width="162" align="center" background="${ctx}/page/Images/bj4.gif"></td>
         </tr>
     </table>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b1.jpg" width="10" height="26" />
+            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b1.jpg" width="10" height="26" />
             </td>
-            <td width="68%" background="Images/b2.jpg">
+            <td width="68%" background="${ctx}/page/Images/b2.jpg">
                 <table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
                     <tr>
                         <td width="20" align="left"><img src="Picture/tz.gif" width="10" height="16" /></td>
@@ -94,73 +113,61 @@
             <th align="center" bgcolor="#EFFBFE">仓库名称</th>
             <th align="center" bgcolor="#EFFBFE">仓库类别</th>
             <th align="center" bgcolor="#EFFBFE">经费类别</th>
-            <th align="center" bgcolor="#EFFBFE">部门编号</th>
+            <th align="center" bgcolor="#EFFBFE">部门名称</th>
             <th align="center" bgcolor="#EFFBFE">仓库负责人</th>
             <th align="center" bgcolor="#EFFBFE">仓库状态</th>
             <th align="center" bgcolor="#EFFBFE">备注</th>
 
         </tr>
 
+       
+       <c:forEach items="${list.list }" var="base">
         <tr>
-            <td style="text-align:center;"><input type="checkbox" name="choice" id="first"></td>
-            <td>000015</td>
-            <td>陶瓷学院</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="text-align:center;">
+           
+            <input type="checkbox" name="choice" id="${base.baseId}">
+            </td>
+            
+            <td>${base.baseName }</td>
+            <td>${base.baseType }</td>
+            <td>${base.found_type.foundType }</td>
+            <td>${base.dept.deptName }</td>
+            <td>${base.users.name}</td>
+            <td>${base.baseStatString}</td>
+            <td>${base.remark}</td>
+             
+        
+             
+            
         </tr>
-        <tr>
-            <td style="text-align:center;"><input type="checkbox" name="choice" id="second"></td>
-            <td>000015</td>
-            <td>陶瓷学院</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="text-align:center;"><input type="checkbox" name="choice" id="third"></td>
-            <td>000015</td>
-            <td>陶瓷学院</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+       </c:forEach>
 
 
         <ul id="menu">
 
             <li>
-                <a href="warehouseAdd.html">
-                    <img width="30" height="30" src="./picture1/zengjia.jpg">
+                <a href="warehouseAdd.do">
+                    <img width="30" height="30" src="${ctx}/page/picture1/zengjia.jpg">
                     <p>增加</p>
                 </a>
             </li>
             <li>
 
-                <a href="warehouseDelect.html" id="delete">
-                    <img width="30" height="30" src="./picture1/shanchu.jpg">
+                <a  id="delete">
+                    <img width="30" height="30" src="${ctx}/page/picture1/shanchu.jpg">
                     <p>删除</p>
                 </a>
             </li>
             <li>
                 <a id="alter">
-                    <img width="30" height="30" src="./picture1/xiugai.jpg">
+                    <img width="30" height="30" src="${ctx}/page/picture1/xiugai.jpg">
                     <p>修改</p>
                 </a>
             </li>
 
             <li>
-                <a href="seek.html">
-                    <img width="30" height="30" src="./picture1/zonghechaxun.jpg">
+                <a href="seek.do">
+                    <img width="30" height="30" src="${ctx}/page/picture1/zonghechaxun.jpg">
                     <p>综合查询</p>
                 </a>
             </li>
@@ -172,7 +179,7 @@
             </li> -->
             <li>
                 <a href="">
-                    <img width="30" height="30" src="./picture1/daochu.jpg">
+                    <img width="30" height="30" src="${ctx}/page/picture1/daochu.jpg">
                     <p>导出Excel</p>
                 </a>
             </li>
@@ -204,41 +211,39 @@
 
     </table>
 
-
-    <table width="50%" border="1" align="left" id="tb" cellpadding="3" cellspacing="1" bgcolor="#AEDEF4"
-        style="border:1px solid #AEDEF4">
-        <td style="color: blue">首页</td>
-        <td style="color: blue">前一页</td>
-        <td style="color: blue">下一页</td>
-        <td style="color: blue">尾页</td>
-        <td><select name="" id="">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select></td>
-        <td>总共10页</td>
-        <td>第1页</td>
-        <td>3条/页</td>
-        <td>总共30条</td>
-
-
+<table width="50%" border="1" align="left" id="tb" cellpadding="0" cellspacing="0"style="border:1px solid #AEDEF4">
+    <td>总共${list.pages }页</td>
+    <td>共${list.total}条数据</td>
+    <td>每页显示${list.pageSize }条数据</td>
+		<c:if test="${list.isFirstPage==false && list.isLastPage==false}">
+		    <td><a href="touser.do">首页</a></td>	
+		      <td><a href="#" onclick="doNextpage(${ list.prePage})">上一页</a> </td>`
+		      <td><a href="#" onclick="doNextpage(${list.nextPage})">下一页</a> </td>
+		     <td><a href="#" onclick="doNextpage(${list.lastPage})">尾页</a></td>
+             <td>    <span>当前第${ list.pageNum}页</span></td> 
+		</c:if> 
+		   
+		   <c:if test="${list.isFirstPage }">
+		     <td><a href="touser.do">首页</a></td>	`
+		      <td><a href="#" onclick="doNextpage(${list.nextPage})">下一页</a> </td>
+		   <td>   <a href="#" onclick="doNextpage(${list.lastPage})">尾页</a> </td> 
+            <td>  <span>当前第${ list.pageNum}页</span></td> 
+		   </c:if> 
+		   
+		<c:if test="${list.isLastPage}">
+		     <td><a href="touser.do">首页</a></td>
+		     <td> <a href="#" onclick="doNextpage(${list.lastPage})">尾页</a></td> 
+            <td>  <span>当前第${ list.pageNum}页</span> </td> 
+		</c:if>    
     </table>
-
 
 
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
 
-            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b2.jpg" width="10" height="26" />
+            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b2.jpg" width="10" height="26" />
             </td>
-            <td width="68%" background="Images/b2.jpg">
+            <td width="68%" background="${ctx}/page/Images/b2.jpg">
                 <table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
             </td>
         <tr>
@@ -258,7 +263,7 @@
                     arr.push(ele[i].id);
                 }
             }
-            // window.location.href = "servletName?arr="+arr;   //数组传值 arr
+             window.location.href = "deleteBase.do?baseIds="+arr;   //数组传值 arr
         }
         var a = document.getElementById("alter");
         var value;
@@ -274,8 +279,8 @@
                 alert("不能修改多个");
                 return;
             } else if (i === 1) {
-                // window.location.href = "servletName?id="+ele[value].id;   //servlet 传值  ele[value].id
-                window.location.href = "warehouseModify.html";
+            	 alert(ele[value].id);
+                window.location.href = "baseUpdate.do?baseId="+ele[value].id;
             } else {
                 alert("请至少选择一个");
                 return;

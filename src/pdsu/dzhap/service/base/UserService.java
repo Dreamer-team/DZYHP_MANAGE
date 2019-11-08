@@ -12,7 +12,9 @@ public interface UserService {
 	
 	List<Users> findAll(Integer pageNum,Integer pageSize);
 	
-	List<Users> query(String deptName,String stat);
+	List<Users> findAll();
+	
+	List<Users> query(String deptName,String stat,String userId);
 
 	Boolean updateUser(Users user);
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -55,7 +56,7 @@ function change_itemtypes2(name){
 <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:4px;">
       <tr>
         <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
-        <td width="466" background="${ctx}/page/Images/bj4.gif">张宇(学院申报者):你好！  当前操作菜单：用户界面管理     
+        <td width="466" background="${ctx}/page/Images/bj4.gif">张宇(学院申报者):你好！  当前操作菜单：历史信息查询    
         </td>
         <td width="162" align="center" background="${ctx}/page/Images/bj4.gif"></td>    
       </tr>
@@ -66,56 +67,84 @@ function change_itemtypes2(name){
             <td width="68%" background="${ctx}/page/Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="20" align="left"><img src="${ctx}/page/Picture/tz.gif" width="10" height="16"/></td>
-                    <td width="104" align="left" class="biao">修改</td> 
+                    <td width="104" align="left" class="biao">查询</td> 
                     <tr>
       </table>
   </tr>
 </table>
+<form action="mat_catesearch.do">
+		<tr>
+		
+			<td colspan="8"  align="center" >
+			按类型查询:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cateIdManual" /> &nbsp;&nbsp;&nbsp;<br /> 
+			按分类名称查询:<input type="text" name="cateName" /> &nbsp;&nbsp;&nbsp; <br /> 
+		  按分类名称查询:<input type="text" name="isDanger" /> &nbsp;&nbsp;&nbsp; <br /> 			
+			<input type="submit" value="查询"/>
+					
+				
+				</td>
+		</tr>
 
-<form id="user" name="user" method="post" action="userUpdate.do" >
-   <table width="50%" border="0" align="center" id="title" name="title" bgcolor="#AEDEF4" cellpadding="0" cellspacing="0" style="border:1px solid #ffffff">
-     <caption style="font-size:20px ">用户信息</caption>
-     <tr width="35">
-         <input type="hidden" value="${user.userId }" name="userId">
-         <td align="right" height="40">用户名称:</td>
-         <td>${user.name }</td>
-         <td  align="right">所属部门:</td>
-         <td align="left">
-            <div align="left">
-               ${user.dept.deptName}
-           </div>
-         </td> 
-     </tr>  
-     <tr width="35">
-         <td align="right" height="40">职称:</td>
-         <td>${user.title }</td>
-         <td align="right">用户状态:</td>
-         <td align="center">
-            <div align="left">
-             <select name="stat" id="stat"   >
-                <option value="1">开启</option>
-                <option value="0">关闭</option>
-             </select> 
-           </div>
-         </td> 
-     </tr>      
-     <tr width="35">
-        <td align="right" height="40">密码:</td>
-         <td>****</td>
-     </tr>
-     <tr width="35" style="background-color:#FFFFFF;">
-         <td>&nbsp;</td>
-         <td width="34%" height="55" align="right">
-           <input name="conserve" type="submit" value="保存" style="width:40px; height:40px">
-       </td>
-         <td width="24%" height="55" align="left">
-            <input name="back" type="button" value="返回" onclick="javascript:history.go(-1);"style="width:40px; height:40px">
-        </td>
-         <td>&nbsp;</td>
-     </tr>    
-        
-  </table>
+  <table width="100%" border="1" align="center" id="tb" cellpadding="3" cellspacing="1" bgcolor="#AEDEF4" style="border:1px solid #AEDEF4">
+    <tr>
+      <th width="20" height="25" align="center" bgcolor="#EFFBFE">选择</th>
+     <th align="center" bgcolor="#EFFBFE">人工分类编号</th>
+				<th align="center" bgcolor="#EFFBFE">类型</th>
+				<th align="center" bgcolor="#EFFBFE">分类名称</th>
+				<th align="center" bgcolor="#EFFBFE">是否危化品</th>
+				<th align="center" bgcolor="#EFFBFE">危险化学品Name</th>
+				<th align="center" bgcolor="#EFFBFE">操作</th>
+    </tr>
+    
+    <tr>
+				<c:forEach items="${list2}" var="mat_cate">
+					<tr>
+						<td style="text-align: center;"><input type="checkbox"
+							name="choice" id="${mat_cate.cateId}"></td>
+						<td>${mat_cate.cateId}</td>
+						<td>${mat_cate.cateIdManual}</td>
+						<td>${mat_cate.cateName}</td>
+						<td>${mat_cate.isDanger}</td>
+						<td>${mat_cate.danger_degree.degreeName}</td>
+						<td><a href="#" onclick="mat_cateDelete(${mat_cate.cateId})">删除</a>
+					</tr>
 
+				</c:forEach>
+			</tr>
+
+
+
+    
+
+<style type="text/css">
+    #menu{
+        float:right;
+    } 
+</style>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+
+            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b2.jpg" width="10" height="26"/></td>
+            <td width="68%" background="${ctx}/page/Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
+              </td> 
+                    <tr>
+      </table>
  
+</div>
+      
+
 </body>
 </html>

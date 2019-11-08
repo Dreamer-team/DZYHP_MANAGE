@@ -182,10 +182,10 @@
       // alert($(".account").val());
       accval = $(".account").val();
       $.ajax({
-        url: "#", //url地址
+        url: "selectUserOne.do", //url地址
         type: "post",
         data: {
-          value: accval
+        	userId: accval
         },
         dataType: "json",
         success: function (data) {

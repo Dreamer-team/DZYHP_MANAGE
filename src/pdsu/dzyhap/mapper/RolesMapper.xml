@@ -59,5 +59,14 @@
   
     select role_id, role_name, stat, remark
     from roles  
+       <where>
+           <if test="roleName!=null &amp;&amp; roleName!='' ">
+               role_name=#{roleName}
+           </if>
+       </where>
+    
+    
+    
+    
   </select>
 </mapper>

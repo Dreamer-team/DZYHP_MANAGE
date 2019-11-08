@@ -105,8 +105,8 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public List<Users> query(String deptName,String  stat) {
-		List<Users> list = usersMapper.query(deptName,stat);
+	public List<Users> query(String deptName,String  stat,String userId) {
+		List<Users> list = usersMapper.query(deptName,stat,userId);
 		for (Users users : list) {
 			if(users.getStat()==SystemConstant.USER_STATE2) {
 				users.setStatStr(SystemConstant.USER_STATE_OPEN);
@@ -116,6 +116,13 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return list;
+	}
+
+
+	@Override
+	public List<Users> findAll() {
+	
+		return usersMapper.selectAll();
 	}
 
 

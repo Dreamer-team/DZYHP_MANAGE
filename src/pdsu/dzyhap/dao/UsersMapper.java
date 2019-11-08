@@ -54,7 +54,7 @@ public interface UsersMapper {
      */
 	Users login(Users user);
 
-	List<Users> query(@Param("deptName")String deptName,@Param("stat")String stat);
+	List<Users> query(@Param("deptName")String deptName,@Param("stat")String stat,@Param("userId")String userId);
 
 	
 }

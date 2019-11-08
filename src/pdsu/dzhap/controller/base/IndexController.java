@@ -12,7 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 
+import pdsu.dzhap.service.base.DeptService;
+import pdsu.dzhap.service.base.Mat_cateservice;
 import pdsu.dzhap.service.base.UserService;
+import pdsu.dzyhap.bean.Dept;
+import pdsu.dzyhap.bean.Mat_cate;
 import pdsu.dzyhap.bean.Users;
 
 
@@ -21,7 +25,10 @@ public class IndexController  {
 	@Autowired
 	private UserService userService;
 	
-   
+	@Autowired
+	DeptService deptService;
+	@Autowired
+	Mat_cateservice mat_cateservice;
 	/**
 	 * 头部管理界面
 	 * @return
@@ -54,6 +61,48 @@ public class IndexController  {
 		return mav;
 	}
 	
+	/**
+	 * 部门管理
+	 * @param mav
+	 * @param pageNum  
+	 * @param pageSize
+	 * @return
+	 * 
+	 *  @RequestParam(defaultValue="0") 的作用：若提交的实参中没有该对应的形参值，
+	 *  则该形参取指定的默认值 ,再该中的作用确定分页的每页记录数
+	 */
+
+	@RequestMapping("dept.do")
+	public ModelAndView dept(ModelAndView mav,@RequestParam(defaultValue="1",value="pageNum",required=true)Integer pageNum,@RequestParam(defaultValue="3",value="pageSize",required=true)Integer pageSize) {
+		List<Dept> list1 = deptService.findAll(pageNum,pageSize);
+		PageInfo<Dept> list=new PageInfo<Dept>(list1);
+		
+		mav.setViewName("department");
+		mav.addObject("list1", list);
+		return mav;
+	}
+	// classify.do
+
+	/**
+	 * 基础分类管理
+	 * @param mav
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	
+	@RequestMapping("classify.do")
+	public ModelAndView classify(ModelAndView mav,@RequestParam(defaultValue="1",value="pageNum",required=true)Integer pageNum,@RequestParam(defaultValue="3",value="pageSize",required=true)Integer pageSize) {
+		//查询所有的记录数
+		List<Mat_cate> list2 = mat_cateservice.findAll(pageNum,pageSize);
+		//使用PageInfo封装分页
+		PageInfo<Mat_cate> list=new PageInfo<Mat_cate>(list2);
+		System.out.println(list2.size()+"xcfvgbhnjmk,l;x");
+		//跳转到classify页面
+		mav.setViewName("classify");
+		mav.addObject("list2", list);
+		return mav;
+	}
 	
 	
 	

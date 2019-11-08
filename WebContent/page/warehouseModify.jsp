@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
  
-<link  href="Css/layout.css" rel="stylesheet" type="text/css" />
-<link href="Css/cb.css" rel="stylesheet" type="text/css"   />
-<link  href="Css/n.css" rel="stylesheet" type="text/css" />
+<link  href="${ctx}/page/Css/layout.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/page/Css/cb.css" rel="stylesheet" type="text/css"   />
+<link  href="${ctx}/page/Css/n.css" rel="stylesheet" type="text/css" />
+
 <style>
 .biankuangs{ border:solid #A6D2FF 1px; border-top:0px;   }
 #xueke,#item_text2,#item_text1,#itemtypes2,#item_text3{ /**/display:none;}
@@ -46,24 +49,44 @@ function change_itemtypes2(name){
         document.getElementById("item_text3").style.display="none"; 
     }
 }
+
+function update() {
+	 var remark=  document.getElementById("remark").value;
+	 alert(remark);
+	 var myselect=document.getElementById("stat");//拿到select对象
+	 var index=myselect.selectedIndex ;//拿到选中项的索引, selectedIndex代表的是你所选中项的index
+	 var stat= myselect.options[index].value;//拿到选中项options的value
+	 alert(stat);
+	 var myselect=document.getElementById("foundStat");//拿到select对象
+	 var index=myselect.selectedIndex ;//拿到选中项的索引, selectedIndex代表的是你所选中项的index
+	 var  foundStat= myselect.options[index].value;//拿到选中项options的value
+	 alert(foundStat); 
+	 location.href="updateBase.do?stat="+stat+'&foundStat'+foundStat+'&remark'+remark;	
+	 
+	 
+}
+
+  
+
+
 </script>
 </head>
 
 <body>
 <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:4px;">
       <tr>
-        <td width="17" background="Images/bj4.gif"><img src="Picture/r.gif" width="16" height="16" /></td>
-        <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！  当前操作菜单：修改    
+        <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
+        <td width="466" background="${ctx}/page/Images/bj4.gif">张宇(学院申报者):你好！  当前操作菜单：修改    
         </td>
         <td width="162" align="center" background="Images/bj4.gif"></td>    
       </tr>
     </table>
       <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="1%" align="left" background="Images/b2.jpg"><img src="Picture/b1.jpg" width="10" height="26"/></td>
-            <td width="68%" background="Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
+            <td width="1%" align="left" background="${ctx}/page/Images/b2.jpg"><img src="${ctx}/page/Picture/b1.jpg" width="10" height="26"/></td>
+            <td width="68%" background="${ctx}/page/Images/b2.jpg"><table width="124" border="0" align="left" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="20" align="left"><img src="Picture/tz.gif" width="10" height="16"/></td>
+                    <td width="20" align="left"><img src="${ctx}/page/Picture/tz.gif" width="10" height="16"/></td>
                     <td width="104" align="left" class="biao">修改</td> 
                     <tr>
       </table>
@@ -84,33 +107,44 @@ function change_itemtypes2(name){
 
 <tr>
       <th align="center" bgcolor="#EFFBFE">仓库名称</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.baseName }</td>
       <th align="center" bgcolor="#EFFBFE">仓库类别</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.baseType }</td>
       <th align="center" bgcolor="#EFFBFE">经费类别</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.found_type.foundType }</td>
       <th align="center" bgcolor="#EFFBFE">部门编号</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.dept.deptId }</td>
   </tr>
   <tr>
       <th align="center" bgcolor="#EFFBFE">仓库负责人</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.users. name }</td>
       <th align="center" bgcolor="#EFFBFE">经费来源</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.foundSrc }</td>
       <th align="center" bgcolor="#EFFBFE">经费预算</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.foundBudget }</td>
       <th align="center" bgcolor="#EFFBFE">经费项目</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.foundProj} </td>
     </tr>
     <tr>
       <th align="center" bgcolor="#EFFBFE">经费主管部门</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >${base.foundDept }</td>
       <th align="center" bgcolor="#EFFBFE">经费状态</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >
+          <select name="foundStat" id="foundStat"   >
+                <option value="1">开启</option>
+                <option value="0">关闭</option>
+             </select> 
+      </td>
       <th align="center" bgcolor="#EFFBFE">仓库状态</th>
-      <td ><input type="text" name="" id="" size="40"></td>
+      <td >
+          <select name="baseStat" id="stat"   >
+                <option value="1">开启</option>
+                <option value="0">关闭</option>
+             </select> 
+      </td>
       <th align="center" bgcolor="#EFFBFE">备注</th>
-     <td ><input type="text" name="" id="" size="40"></td>
+     <td > 
+         <input type="text" name="remark" id="remark"  value="${base.remark }" size="40"></td>
     </tr>
 
 
@@ -137,7 +171,7 @@ text-decoration:none; /* 去掉下划线 */
 
 
 <table width="50%" border="1" align="left" id="tb" cellpadding="0" cellspacing="0"style="border:1px solid #ffffff">
-    <input type="button" value="保存" onclick="javascript:history.back();"style="width:40px; height:40px" >
+    <input type="button" value="保存" onclick="update()"style="width:40px; height:40px" >
     <input type="button" value="返回" onclick="javascript:history.go(-1);"style="width:40px; height:40px">
 </table>
  

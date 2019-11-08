@@ -54,6 +54,12 @@
     from dept
     where dept_id = #{deptId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   select dept_id, dept_name, dept_type, dept_remark
+    from dept
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     <!--
       WARNING - @mbggenerated
@@ -63,4 +69,30 @@
     select dept_id, dept_name, dept_type, dept_remark
     from dept
   </select>
+ 
+ 
+
+ 
+ 
+
+  <select id="SearchDept" resultMap="BaseResultMap" >
+		 select dept_id, dept_name, dept_type, dept_remark
+    from dept
+      <where>
+       <if test="deptId!=null &amp;&amp;deptId!= &quot;&quot;">
+        dept_id=#{deptName}      </if>
+         <if test="deptName!=null &amp;&amp;deptName!= &quot;&quot;">
+         dept_name=#{deptName}
+      </if>
+      <if test=" deptType!=null  &amp;&amp; deptType!= &quot;&quot;">
+        and   dept_type=#{ deptType}
+      </if>
+      <if test=" deptRemark!=null  &amp;&amp; deptRemark!= &quot;&quot;">
+        and   dept_remark=#{ deptType}
+      </if>
+      </where>     
+	</select>
+ 
+
+ 
 </mapper>

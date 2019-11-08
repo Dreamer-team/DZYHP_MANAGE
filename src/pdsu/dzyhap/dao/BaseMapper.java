@@ -1,6 +1,9 @@
 package pdsu.dzyhap.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import pdsu.dzyhap.bean.Base;
 
 public interface BaseMapper {
@@ -43,4 +46,27 @@ public interface BaseMapper {
      * @mbggenerated Tue Oct 08 21:15:41 GMT+08:00 2019
      */
     int updateByPrimaryKey(Base record);
+    
+    /**
+     * 多表查询全部信息
+     * @return
+     */
+	List<Base> query();
+	
+	/**
+	 * 根据id查询一条数据
+	 * @param baseId
+	 * @return
+	 */
+	Base selectOne(Integer baseId);
+
+	/**
+	 * 根据账户名或者状态查询信息
+	 * @param baseName
+	 * @param stat
+	 * @return
+	 */
+	List<Base> selectBybaseNameAndStat(@Param("baseName")String baseName,@Param("stat")String stat);
+	
+	
 }

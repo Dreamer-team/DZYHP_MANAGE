@@ -36,10 +36,15 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+	/**
+	 * 给用户添加角色
+	 * @param mav
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping("userRoleAdd.do")
 	public ModelAndView userRoleAdd(ModelAndView mav,Users user) {
-		
-		List<Roles> list = roleService.findAll() ;
+		List<Roles> list = roleService.findAll("") ;
 		String userId = user.getUserId();
 		 mav.addObject("userId", userId);
 		 mav.setViewName("userRoleAdd");
@@ -47,9 +52,15 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 进入添加用户界面
+	 * @param mav
+	 * @return
+	 */
+
 	@RequestMapping("build.do")
-	public ModelAndView build(ModelAndView mav) {
-		List<Dept> list = deptService.findAll();
+	public ModelAndView build(ModelAndView mav,Integer pageNum,Integer pageSize) {
+		List<Dept> list = deptService.findAll(pageNum, pageSize);
 		mav.setViewName("build");
 	     mav.addObject("list", list);
 		return mav;
@@ -94,6 +105,13 @@ public class UserController {
 		
 	}
 	
+	
+	/**
+	 * 删除
+	 * @param user
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("userDelete.do")
 	public String userDelete(Users user,Model model)
 	{
@@ -128,12 +146,17 @@ public class UserController {
 	
 	
 	
+	/**
+	 * 查询用户
+	 * @param deptName
+	 * @param stat
+	 * @return
+	 */
      @RequestMapping("selectUserOne.do")
      @ResponseBody
-	  public List<UserDto> userSeekselectUserByDept(String deptName,String stat)
+	  public List<UserDto> userSeekselectUserByDept(String deptName,String stat,String userId)
 		{	
-    	  List<Users> list1=userService.query(deptName,stat);
-    	  System.out.println(list1.size());
+    	  List<Users> list1=userService.query(deptName,stat,userId);
     	  UserDto d=null;
     	  List<UserDto> list=new ArrayList<UserDto> ();
           for(Users u:list1) {
@@ -143,29 +166,23 @@ public class UserController {
         	   d.setTitle(u.getTitle());	    
         	   d.setStatStr(u.getStatStr());
         	  d.setDeptName(u.getDept().getDeptName());
-        	 System.out.println("....."+d+".....");
-        	 System.out.println(u+".....");
         	 list.add(d);
           }
-          System.out.println(list.size()+".....");
-    	  
-          
           return  list;
 		}
      
      
      
+     /**
+      * 进入查询界面
+      * @return
+      */
      @RequestMapping("userSeek.do")
 	  public String userSeek()
 		{	
 		  return "userSeek";
 		}
-    
-		
-		
-
-
-	
+   
 	
 
 }

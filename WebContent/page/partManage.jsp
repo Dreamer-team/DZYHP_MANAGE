@@ -68,10 +68,10 @@
 <body>
   <table width="99%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:4px;">
     <tr>
-      <td width="17" background="Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
-      <td width="466" background="Images/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：角色管理界面
+      <td width="17" background="${ctx}/page/Images/bj4.gif"><img src="${ctx}/page/Picture/r.gif" width="16" height="16" /></td>
+      <td width="466" background="${ctx}/page/mages/bj4.gif">张宇(学院申报者):你好！ 当前操作菜单：角色管理界面
       </td>
-      <td width="162" align="center" background="Images/bj4.gif"></td>
+      <td width="162" align="center" background="${ctx}/page/Images/bj4.gif"></td>
     </tr>
   </table>
   <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -108,7 +108,7 @@
              <td>${role.remark }</td>
              <td>${role.stat }</td>
             <td align="center">
-                  <a href="" onclick="doDelete(${role.roleId})">删除</a>
+                  <a href="#" onclick="doDelete(${role.roleId})">删除</a>
             </td>
     </tr>
           
@@ -130,9 +130,9 @@
     </div>
     <!-- 搜索框 -->
     <div align="right">
-      <form name="input" action="" method="post">
-        <input type="text" name="ssk" />
-        <input type="submit" value="搜索" name="butt" />
+      <form  action="partManage.do" method="post">
+        <input type="text" name="roleName" />
+        <input type="submit" value="搜索"  />
       </form>
     </div>
 
@@ -201,17 +201,7 @@
             font-size: 16px;
           }
         </style>
-        <div class="pagination-bar">
-          <a href="">首页</a>
-          <a href="#" onClick="javascript:history.back(-1);" class="page-prev disabled">&lt;</a>
-          <a href="">前一页</a>
-          <a href="">下一页</a>
-          <a href="" class="page-next disabled">&gt;</a>
-          <a href="">尾页</a>
-          <span>第1页</span>
-          <span>共1页</span>
-        </div>
-
+        
         </form>
       </td>
     </tr>
