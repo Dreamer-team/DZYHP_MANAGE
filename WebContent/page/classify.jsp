@@ -107,8 +107,8 @@ function doPrepage(sid) {
 		</tr>
 	</table>
 	<form id="classifyfrom" name="buildfrom" method="post" action="">
-		<table width="100%" border="1" align="center" id="tb" cellpadding="3"
-			cellspacing="1" bgcolor="#AEDEF4" style="border: 1px solid #AEDEF4">
+		<table width="100%" border="1" align="center" id="tb" cellpadding="0" cellspacing="0" bgcolor="#AEDEF4" 
+		      style="border:1px solid #AEDEF4">
 			<tr>
 				<th width="20" height="25" align="center" bgcolor="#EFFBFE">选择</th>
 				<th align="center" bgcolor="#EFFBFE">人工分类编号</th>

@@ -115,26 +115,10 @@
 
 
   <table width="50%" border="1" align="left" id="tb" cellpadding="0" cellspacing="0" style="border:1px solid #AEDEF4">
-    <td>总共2页，共14条数据。每页<select>
-        <option value="volvo">1</option>
-        <option value="saab">2</option>
-        <option value="opel">3</option>
-        <option value="audi">4</option>
-      </select>条</td>
+   
 
 
-    <td><a href="user.html">首页</a>
-    <td><a href="#" onClick="javascript:history.back(-1);" class="page-prev disabled">&lt;</a>
-      <a href="user.html">1</a>
-      <a href="user2.html">2</a>
-      <a href="user3.html">3</a>
-      <a href="user4.html">4</a>
-      <a href="user5.html">5</a>
-      <a href="user2.html" class="page-next disabled">&gt;</a>
-      <a href="user5.html">尾页</a>
-      <span>第1页</span></<span>
-      <span>共5页</span></<a>
-    </td>
+    
 
   </table>
 
