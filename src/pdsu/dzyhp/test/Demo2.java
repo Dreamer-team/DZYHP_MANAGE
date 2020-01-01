@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pdsu.dzyhap.bean.Base;
-import pdsu.dzyhap.dao.BaseMapper;
+import pdsu.dzyhp.bean.Base;
+import pdsu.dzyhp.dao.BaseMapper;
 
 public class Demo2 {
 

@@ -21,14 +21,14 @@
         <property name="password" value="${jdbc.password}"></property>
      </bean>
      <!-- 扫描包 -->
-     <context:component-scan base-package="pdsu.dzhap.service"></context:component-scan>
+     <context:component-scan base-package="pdsu.dzyhp.service"></context:component-scan>
      <!-- mybatis整合配置 -->
      <bean id="SessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
          <!-- 指定mabatis文件所在位置 -->
          <property name="configLocation" value="classpath:mybatis-config.xml"></property>
          <property name="dataSource" ref="pooledDataSource"></property>
          <!-- 指定mapper文件的位置,如果写mapper.xml的话,把这个properties开启 --> 
-         <property name="mapperLocations" value="classpath:pdsu/dzyhap/mapper/*.xml"></property>
+         <property name="mapperLocations" value="classpath:pdsu/dzyhp/mapper/*.xml"></property>
         
      </bean>
      
@@ -42,7 +42,7 @@
     
      <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描所有的dao接口的实现加入到ioc容器中 -->
-        <property name="basePackage" value="pdsu.dzyhap.dao"> </property> 
+        <property name="basePackage" value="pdsu.dzyhp.dao"> </property> 
      </bean>
      <!-- 事务的配置 -->
      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

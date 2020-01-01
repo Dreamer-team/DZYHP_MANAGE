@@ -1,0 +1,64 @@
+html{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	width:100%;
+	height:100%;
+	background:#ffcc80;
+}
+.divBox{
+	hright:50px;
+	position:relative;
+	width:100%;
+}
+#divBox_z{
+	width:200%;
+	position:absolute;
+	left:0;
+	height:0;
+}
+.welcomeTop{
+	background:linear-gradient(to bottom,#ff5722 0%,transparent 50%,#ff5722);
+	height:50px;
+	border:2px solid #19374e;
+	border:0;
+	box-shadow:2px 2px 3px black;
+	border-radius:10px;
+	margin-top:30px;
+
+}
+#divBox_z>p{
+	height:100%;
+	width:50%;
+	display:inline-block;
+	margin-top:10px;
+	font-size:20px;
+	font-family:“仿宋_GB2312 常规”;
+	float:left;
+	
+}
+.welcomeText{
+	color:red;
+	margin:0 0 0 200px;
+}
+.welcomeBody{
+	padding:0;
+	margin:auto;
+	padding:0 10% 0;
+}
+.welcomeTable{
+	border-collapse: collapse;
+	border:3px solid black;
+}
+.welcomeTable td{
+	width:300px;
+	padding:10px;
+	border:2px solid black;
+	text-align:center;
+}

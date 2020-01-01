@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pdsu.dzyhp.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="pdsu.dzyhp.bean.Users" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="stat" property="stat" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap type="pdsu.dzyhp.bean.Users" id="Dept_Users" extends="BaseResultMap">
+    <association property="dept" column="deptId" javaType="pdsu.dzyhp.bean.Dept" resultMap="pdsu.dzyhp.dao.DeptMapper.BaseResultMap" > 
+     </association>
+  </resultMap>
+  
+  
+  <resultMap type="pdsu.dzyhp.bean.Users" id="queryMap">
+       <id column="user_id" property="userId" jdbcType="VARCHAR" />
+       <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="title" property="title" jdbcType="VARCHAR" />
+      <result column="stat" property="stat" jdbcType="CHAR" />
+      <association property="dept"  javaType="pdsu.dzyhp.bean.Dept" >
+         <result column="dept_name" property="deptName"/>
+      </association>
+  </resultMap>
+  
+  <sql id="base_sql"> user_id, pwd, name, title, dept_id, stat</sql>
+  <delete id="deleteByPrimaryKey"  >
+   
+    delete from users
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="pdsu.dzyhp.bean.Users" >
+    
+    insert into users (user_id, pwd, name, 
+      title, dept_id, stat)
+    values (#{userId,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{dept.deptId,jdbcType=INTEGER}, #{stat,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" >
+   
+    update users
+        
+        <set>
+            <if test="stat!=null &amp;&amp; stat !=''">  stat = #{stat,jdbcType=CHAR}</if>
+        </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="Dept_Users"  >
+    select  *
+    from users u left join dept d on d.dept_id=u.dept_id
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="Dept_Users" >
+   select  *
+    from users u left join dept d on d.dept_id=u.dept_id
+  </select>
+  
+  
+  <select id="login" resultType="pdsu.dzyhp.bean.Users">
+     select <include refid="base_sql"></include>
+    from users
+    where pwd = #{pwd} and name=#{name}
+  </select>
+  
+  <select id="query" resultMap="queryMap" >
+       select  u.user_id as user_id,u.name as name, u.title as title,u.stat as stat,d.dept_name as dept_name
+      from dept d join  users u on d.dept_id=u.dept_id  
+      <where>
+           <if test="stat!=null &amp;&amp; stat!='' ">
+                  u.stat=#{stat}
+           </if>
+            <if test="deptName!=null &amp;&amp; deptName!='' ">
+                  d.dept_name=#{deptName}
+           </if>
+            <if test="userId!=null &amp;&amp; userId!='' ">
+                 u.user_id  like concat("%",#{userId},"%")
+           </if>
+           
+      </where>
+  </select>
+  
+  
+  
+</mapper>

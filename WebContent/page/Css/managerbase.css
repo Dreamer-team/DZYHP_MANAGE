@@ -1,0 +1,80 @@
+body{
+	background:#ffcc80;
+}
+th,td{
+	text-align: center;
+}
+.divDiv{
+	display:-webkit-flex;
+	flex-direction:column;
+	justify-content:flex-end;
+	
+}
+.divXinZeng{
+	width:70px;
+	align-self:flex-end;
+	margin:20px 20px 10px;
+}
+.divXinZeng a{
+	border-radius:5px;
+}
+
+.myForm{
+	display:flex;
+	flex-direction:column;
+	justify-content:flex-end;
+	flex-wrap:nowrap;	
+}
+.myForm input{
+	width:150px;
+	border-radius:7px;
+}
+.myForm select{
+	width:150px;
+	height:26px;
+	border-radius:7px;
+}
+.myForm1{
+	width:500px;
+	height:400px;
+	margin:80px auto ;
+	display:flex;
+	flex-direction:row;
+}
+.myForm1 input{
+	width:150px;
+	margin:10px 18px 10px 0;
+	border-radius:7px;
+}
+.myForm1 select{
+	width:150px;
+	height:26px;
+	margin:10px 15px 10px 0;
+	border-radius:7px;
+}
+.myForm1Div{
+	margin:30px auto;
+	width:100%;
+	display:flex;
+	justify-content:center;
+}
+.myForm1 button{
+	margin:0 20px;
+}
+.myForm2{
+	width:500px;
+	height:400px;
+	margin:80px auto;
+	border:1px solid red;
+	padding:8% 10%;
+	box-shadow:1px 1px 10px black;
+	border:0;
+}
+.myForm2>div{
+	width:auto;
+	height:auto;
+	border:1px solid;
+	padding:30px;
+	box-shadow:1px 1px 10px black;
+	border:0;
+}

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pdsu.dzyhap.bean.Found_type;
-import pdsu.dzyhap.bean.Users;
-import pdsu.dzyhap.dao.Found_typeMapper;
+import pdsu.dzyhp.bean.Found_type;
+import pdsu.dzyhp.bean.Users;
+import pdsu.dzyhp.dao.Found_typeMapper;
 
 public class Demo {
 	public static void main(String[] args) {
